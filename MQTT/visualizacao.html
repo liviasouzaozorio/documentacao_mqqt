@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Lâmpada Status</title>
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+<h1>Status da Lâmpada</h1>
+<img id="lampada" src="./img/Loff.jpg" width="150">
+
+<script>
+const client = mqtt.connect("ws://10.0.2.6:9001/mqtt");
+const topico = "senai/lampada";
+
+client.on("connect", () => {
+    console.log("Conectado ao broker");
+    client.subscribe(topico);
+});
+
+client.on("message", (topic, message) => {
+    if(topic === topico){
+        const img = document.getElementById("lampada");
+        if(message.toString() === "ON"){
+            img.src = "./img/Lon.jpg";
+        } else {
+            img.src = "./img/Loff.jpg";
+        }
+    }
+});
+</script>
+</body>
+</html>

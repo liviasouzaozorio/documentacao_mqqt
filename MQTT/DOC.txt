@@ -1,0 +1,27 @@
+root@alunoserver:/home/aluno# vim /etc/mosquitto/conf.d/websocket.conf
+root@alunoserver:/home/aluno# systemctl restart mosquitto
+root@alunoserver:/home/aluno# systemctl status mosquitto
+● mosquitto.service - Mosquitto MQTT Broker
+     Loaded: loaded (/usr/lib/systemd/system/mosquitto.service; enabled; pres
+     Active: active (running) since Tue 2025-10-07 14:54:08 UTC; 5s ago
+       Docs: man:mosquitto.conf(5)
+             man:mosquitto(8)
+    Process: 3313 ExecStartPre=/bin/mkdir -m 740 -p /var/log/mosquitto (code=
+    Process: 3314 ExecStartPre=/bin/chown mosquitto:mosquitto /var/log/mosqui
+    Process: 3317 ExecStartPre=/bin/mkdir -m 740 -p /run/mosquitto (code=exit
+    Process: 3319 ExecStartPre=/bin/chown mosquitto:mosquitto /run/mosquitto
+   Main PID: 3321 (mosquitto)
+      Tasks: 1 (limit: 2268)
+     Memory: 2.2M (peak: 2.4M)
+        CPU: 48ms
+     CGroup: /system.slice/mosquitto.service
+             └─3321 /usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
+
+out 07 14:54:08 alunoserver systemd[1]: Starting mosquitto.service - Mosquitt
+out 07 14:54:08 alunoserver mosquitto[3321]: 1759848848: Loading config file
+out 07 14:54:08 alunoserver systemd[1]: Started mosquitto.service - Mosquitto
+lines 1-19/19 (END)
+vim /etc/mosquitto/conf.d/websnetstat  -tlnp | grep mosquitto
+tcp        0      0 0.0.0.0:9001            0.0.0.0:*               LISTEN   3321/mosquitto
+tcp6       0      0 :::9001                 :::*                    LISTEN   3321/mosquitto
+root@alunoserver:/home/aluno#
