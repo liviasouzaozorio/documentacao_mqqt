@@ -10,7 +10,7 @@
 <img id="lampada" src="./img/Loff.jpg" width="150">
 
 <script>
-const client = mqtt.connect("ws://10.0.2.6:9001/mqtt");
+const client = mqtt.connect("ws://10.0.2.4:9001/mqtt");
 const topico = "senai/lampada";
 
 client.on("connect", () => {
@@ -31,3 +31,4 @@ client.on("message", (topic, message) => {
 </script>
 </body>
 </html>
+
